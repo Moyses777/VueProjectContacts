@@ -39,6 +39,7 @@ form.row.g-3.formregister
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { Notifications } from "@/tools/Utilities";
 import "@ui5/webcomponents/dist/features/InputSuggestions.js";
 import "@ui5/webcomponents/dist/Input.js";
 import "@ui5/webcomponents/dist/Label.js";
@@ -67,7 +68,7 @@ export default defineComponent({
     };
   },
   methods: {
-    registerUser: function () {
+    registerUser: async function () {
       if (this.isChecked) {
         if (
           !this.isEmail &&
@@ -87,7 +88,15 @@ export default defineComponent({
             this.txtState != "" &&
             this.txtZip != 0
           ) {
-            alert("Datos enviados!");
+            let notification = new Notifications();
+            await notification.ShowSessionLoadingMessage();
+            this.txtEmail = "";
+            this.txtPassword = "";
+            this.txtAddress = "";
+            this.txtAddressTwo = "";
+            this.txtCity = "";
+            this.txtState = "";
+            this.txtZip = 0;
           }
         }
       }

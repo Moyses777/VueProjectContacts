@@ -7,16 +7,16 @@ button.btn.btn-primary.btnOffcanvas(type='button' data-bs-toggle='offcanvas' dat
   .offcanvas-body
     ol.list-group.list-group-numbered
       li.list-group-item.d-flex.justify-content-between.align-items-start
-        RouterLink.ms-2.me-auto.totalWidth(to="/login")
+        RouterLink.ms-2.me-auto.totalWidth(to="/registercontact")
           .ms-2.me-auto
-            .fw-bold Subheading
-            |       Cras justo odio
+            .fw-bold Registro de contactos
+            |       Se hara el registro de los contactos a mi agenda!
         span.badge.bg-primary.rounded-pill 14
       li.list-group-item.d-flex.justify-content-between.align-items-start
-        RouterLink.ms-2.me-auto.totalWidth(to="/login")
+        RouterLink.ms-2.me-auto.totalWidth(to="/dashboard")
           .ms-2.me-auto
-            .fw-bold Subheading
-            |       Cras justo odio
+            .fw-bold Tabla de contactos
+            |       Registro de todos los contactos de la agenda!
         span.badge.bg-primary.rounded-pill 14
       li.list-group-item.d-flex.justify-content-between.align-items-start
         RouterLink.ms-2.me-auto.totalWidth(to="/login")
@@ -38,3 +38,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.modal-backdrop.fade.show {
+  display: none;
+}
+</style>

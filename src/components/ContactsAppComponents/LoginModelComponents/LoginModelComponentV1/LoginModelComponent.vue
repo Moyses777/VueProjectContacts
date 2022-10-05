@@ -17,6 +17,7 @@ form.row.g-3.formregister
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { Notifications } from "@/tools/Utilities";
 import "@ui5/webcomponents/dist/features/InputSuggestions.js";
 import "@ui5/webcomponents/dist/Input.js";
 import "@ui5/webcomponents/dist/Button.js";
@@ -44,11 +45,12 @@ export default defineComponent({
     validatePassword: function () {
       this.isPassword = this.txtPassword.length < 5;
     },
-    loginUser: function () {
+    loginUser: async function () {
       if (this.isChecked) {
         if (!this.isEmail && !this.isPassword) {
           if (this.txtEmail != "" && this.txtPassword != "") {
-            alert("Se inicio sesion prruuu :v");
+            let notification = new Notifications();
+            await notification.ShowSessionLoadingMessage();
             window.location.href = "/dashboard";
           }
         }

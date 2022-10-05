@@ -44,11 +44,14 @@ form.row.g-3.formregister
       )
   .col-12.center
     ui5-button.btnsize(design="Default", @click="registerContact") Submit
+
+OffCanvasSliderComponent
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Notifications } from "@/tools/Utilities";
+import OffCanvasSliderComponent from "@/components/ContactsAppComponents/OffCanvasSliderComponents/OffcanvasSliderComponentV1/OffCanvasSliderComponent.vue";
 import "@ui5/webcomponents/dist/Input.js";
 import "@ui5/webcomponents/dist/CheckBox.js";
 import "@ui5/webcomponents/dist/Label.js";
@@ -77,7 +80,7 @@ export default defineComponent({
       this.isTelephone =
         this.txtTelephone.length < 10 || this.txtTelephone.length > 10;
     },
-    registerContact: function () {
+    registerContact: async function () {
       if (this.isChecked) {
         if (
           this.txtName != "" &&
@@ -85,13 +88,20 @@ export default defineComponent({
           this.txtTelephone != ""
         ) {
           if (!this.isName && !this.isLastname && !this.isTelephone) {
-            alert("Formulario enviado!");
             let notification = new Notifications();
-            notification.ShowMessage();
+            await notification.ShowSessionLoadingMessage();
+            notification.ShowMessageSuccess("El registro ha sido exitoso!!!");
+            this.txtName = "";
+            this.txtLastname = "";
+            this.txtTelephone = "";
+            this.isChecked = false;
           }
         }
       }
     },
+  },
+  components: {
+    OffCanvasSliderComponent,
   },
 });
 </script>

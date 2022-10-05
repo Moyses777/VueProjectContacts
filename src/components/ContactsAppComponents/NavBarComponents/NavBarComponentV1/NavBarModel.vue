@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, nextTick } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 
 export default defineComponent({
@@ -9,6 +9,14 @@ export default defineComponent({
         window.location.pathname == "/login" ||
         window.location.pathname == "/register",
     };
+  },
+  watch: {
+    isReallyLogged: async function () {
+      await nextTick();
+      this.isLogged =
+        window.location.pathname == "/login" ||
+        window.location.pathname == "/register";
+    },
   },
   components: { RouterLink, RouterView },
 });

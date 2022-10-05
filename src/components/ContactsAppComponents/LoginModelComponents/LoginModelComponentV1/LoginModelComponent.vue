@@ -18,6 +18,8 @@ form.row.g-3.formregister
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Notifications } from "@/tools/Utilities";
+import router from "@/router/index";
+import store from "@/store/index";
 import "@ui5/webcomponents/dist/features/InputSuggestions.js";
 import "@ui5/webcomponents/dist/Input.js";
 import "@ui5/webcomponents/dist/Button.js";
@@ -50,8 +52,10 @@ export default defineComponent({
         if (!this.isEmail && !this.isPassword) {
           if (this.txtEmail != "" && this.txtPassword != "") {
             let notification = new Notifications();
+            store.commit("LoginSession", this.txtEmail);
             await notification.ShowSessionLoadingMessage();
-            window.location.href = "/dashboard";
+            router.push("/dashboard");
+            //window.location.href = "/dashboard";
           }
         }
       }

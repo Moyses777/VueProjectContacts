@@ -5,6 +5,7 @@ offcanvas-slider.btnOffcanvas
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import store from "@/store/index";
 import ContactsTableModule from "@/components/ContactsAppComponents/ContactsMaviModelComponentTable/ContactsTableModuleComponentV1/ContactsTableModule.vue";
 import OffcanvasSlider from "@/components/ContactsAppComponents/OffCanvasSliderComponents/OffcanvasSliderComponentV1/OffCanvasSliderComponent.vue";
 
@@ -12,6 +13,9 @@ export default defineComponent({
   components: {
     "contact-table": ContactsTableModule,
     "offcanvas-slider": OffcanvasSlider,
+  },
+  mounted: function () {
+    alert(store.state.user.Email);
   },
 });
 </script>

@@ -6,6 +6,7 @@ offcanvas-slider.btnOffcanvas
 <script lang="ts">
 import { defineComponent } from "vue";
 import store from "@/store/index";
+import router from "@/router/index";
 import ContactsTableModule from "@/components/ContactsAppComponents/ContactsMaviModelComponentTable/ContactsTableModuleComponentV1/ContactsTableModule.vue";
 import OffcanvasSlider from "@/components/ContactsAppComponents/OffCanvasSliderComponents/OffcanvasSliderComponentV1/OffCanvasSliderComponent.vue";
 
@@ -16,6 +17,11 @@ export default defineComponent({
   },
   mounted: function () {
     console.log(store.state.user.Email);
+  },
+  beforeMount: function () {
+    if (store.state.user.Email == "") {
+      router.push("login");
+    }
   },
 });
 </script>

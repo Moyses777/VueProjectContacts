@@ -15,7 +15,7 @@ export default defineComponent({
     "offcanvas-slider": OffcanvasSlider,
   },
   mounted: function () {
-    alert(store.state.user.Email);
+    console.log(store.state.user.Email);
   },
 });
 </script>

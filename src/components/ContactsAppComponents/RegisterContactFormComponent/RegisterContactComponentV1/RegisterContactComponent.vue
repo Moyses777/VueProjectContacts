@@ -90,7 +90,6 @@ export default defineComponent({
           if (!this.isName && !this.isLastname && !this.isTelephone) {
             let notification = new Notifications();
             await notification.ShowSessionLoadingMessage();
-            notification.ShowMessageSuccess("El registro ha sido exitoso!!!");
             this.txtName = "";
             this.txtLastname = "";
             this.txtTelephone = "";

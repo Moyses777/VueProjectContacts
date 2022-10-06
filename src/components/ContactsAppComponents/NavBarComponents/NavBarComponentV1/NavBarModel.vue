@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, nextTick } from "vue";
+import { defineComponent } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 
 export default defineComponent({
@@ -11,8 +11,7 @@ export default defineComponent({
     };
   },
   watch: {
-    isReallyLogged: async function () {
-      await nextTick();
+    $route: function (to, from) {
       this.isLogged =
         window.location.pathname == "/login" ||
         window.location.pathname == "/register";
@@ -29,9 +28,9 @@ nav.navbar.navbar-light.bg-light
         img.d-inline-block.align-text-top(src='@/assets/logo.png' alt='' width='30' height='24')
         |       Registro Contactos Mavi 
       div
-        RouterLink.container.navbarbutton(to="login" v-if="isLogged") Iniciar Sesión 
+        RouterLink.container.navbarbutton(to="login" v-if="isLogged") Iniciar Sesión
         RouterLink.container.navbarbutton(to="register" v-if="isLogged") Registro
-        a.container.navbarbutton(href="login" v-if="!isLogged") Cerrar Sesión
+        RouterLink.container.navbarbutton(to="login" v-if="!isLogged") Cerrar Sesión
 </template>
 
 <style>

@@ -55,7 +55,6 @@ export default defineComponent({
             store.commit("LoginSession", this.txtEmail);
             await notification.ShowSessionLoadingMessage();
             router.push("/dashboard");
-            //window.location.href = "/dashboard";
           }
         }
       }

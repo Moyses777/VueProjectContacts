@@ -97,6 +97,7 @@ export default defineComponent({
             this.txtCity = "";
             this.txtState = "";
             this.txtZip = 0;
+            this.isChecked = false;
           }
         }
       }

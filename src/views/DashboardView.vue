@@ -65,5 +65,11 @@ table {
 
 .totalWidth {
   width: 100%;
+  color: black;
+  text-decoration: none;
+}
+
+.ms-2.me-auto.totalWidth:hover {
+  color: black;
 }
 </style>

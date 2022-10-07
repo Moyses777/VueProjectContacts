@@ -51,6 +51,7 @@ OffCanvasSliderComponent
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Notifications } from "@/tools/Utilities";
+import store from "@/store/index";
 import OffCanvasSliderComponent from "@/components/ContactsAppComponents/OffCanvasSliderComponents/OffcanvasSliderComponentV1/OffCanvasSliderComponent.vue";
 import "@ui5/webcomponents/dist/Input.js";
 import "@ui5/webcomponents/dist/CheckBox.js";
@@ -89,6 +90,11 @@ export default defineComponent({
         ) {
           if (!this.isName && !this.isLastname && !this.isTelephone) {
             let notification = new Notifications();
+            store.commit("AddContact", [
+              this.txtName,
+              this.txtLastname,
+              this.txtTelephone,
+            ]);
             await notification.ShowSessionLoadingMessage();
             this.txtName = "";
             this.txtLastname = "";

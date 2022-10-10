@@ -39,6 +39,7 @@ form.row.g-3.formregister
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import store from "@/store/index";
 import { Notifications } from "@/tools/Utilities";
 import "@ui5/webcomponents/dist/features/InputSuggestions.js";
 import "@ui5/webcomponents/dist/Input.js";
@@ -89,6 +90,10 @@ export default defineComponent({
             this.txtZip != 0
           ) {
             let notification = new Notifications();
+            store.commit("AddUserRegistered", {
+              Email: this.txtEmail,
+              Password: this.txtPassword,
+            });
             await notification.ShowSessionLoadingMessage();
             this.txtEmail = "";
             this.txtPassword = "";

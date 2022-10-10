@@ -1,3 +1,4 @@
+import store from "@/store";
 import AWN from "awesome-notifications";
 import { AwnOptions } from "awesome-notifications";
 
@@ -27,9 +28,11 @@ export class Notifications {
     await this.notification.asyncBlock(
       new Promise((Resolve, Reject) => {
         setTimeout(() => {
-          Resolve("Hola mundo");
+          if (store.state.user.Email != "") Resolve("");
+          else Reject("Usuario o Contraseña incorrectos!!!");
         }, 3000);
-      })
+      }),
+      "Proceso Exitoso!"
     );
     return "opened";
   }

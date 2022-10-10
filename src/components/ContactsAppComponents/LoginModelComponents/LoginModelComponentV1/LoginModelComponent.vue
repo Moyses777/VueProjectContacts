@@ -52,9 +52,12 @@ export default defineComponent({
         if (!this.isEmail && !this.isPassword) {
           if (this.txtEmail != "" && this.txtPassword != "") {
             let notification = new Notifications();
-            store.commit("LoginSession", this.txtEmail);
+            store.commit("LoginSession", {
+              Email: this.txtEmail,
+              Password: this.txtPassword,
+            });
             await notification.ShowSessionLoadingMessage();
-            router.push("/dashboard");
+            if (store.state.user.Email != "") router.push("/dashboard");
           }
         }
       }

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import store from "@/store/index";
 import { RouterLink, RouterView } from "vue-router";
 
 export default defineComponent({
@@ -18,6 +19,11 @@ export default defineComponent({
     },
   },
   components: { RouterLink, RouterView },
+  methods: {
+    closeSession: function () {
+      store.commit("CloseSession");
+    },
+  },
 });
 </script>
 
@@ -30,7 +36,7 @@ nav.navbar.navbar-light.bg-light
       div
         RouterLink.container.navbarbutton(to="login" v-if="isLogged") Iniciar Sesión
         RouterLink.container.navbarbutton(to="register" v-if="isLogged") Registro
-        RouterLink.container.navbarbutton(to="login" v-if="!isLogged") Cerrar Sesión
+        RouterLink.container.navbarbutton(to="login" v-if="!isLogged" @click="closeSession") Cerrar Sesión
 </template>
 
 <style>

@@ -19,10 +19,10 @@ button.btn.btn-primary.btnOffcanvas(type='button' data-bs-toggle='offcanvas' dat
             |       Registro de todos los contactos de la agenda!
         span.badge.bg-primary.rounded-pill 14
       li.list-group-item.d-flex.justify-content-between.align-items-start
-        RouterLink.ms-2.me-auto.totalWidth(to="/login")
+        RouterLink.ms-2.me-auto.totalWidth(to="/chat")
           .ms-2.me-auto
-            .fw-bold Subheading
-            |       Cras justo odio
+            .fw-bold Chat Contactos
+            |       Chat para poder comunicarte con tus contactos!
         span.badge.bg-primary.rounded-pill 14
 
 </template>

@@ -43,7 +43,7 @@ export default defineComponent({
   background: crimson;
   font-family: sans-serif;
   font-weight: 800;
-  position: absolute;
+  position: fixed;
   right: 5%;
   bottom: 5%;
   box-shadow: black 5px 5px 5px;

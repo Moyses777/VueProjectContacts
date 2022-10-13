@@ -9,6 +9,17 @@ export default createStore({
       ["Francisco", "Colomos", "3324751245"],
       ["Adrian", "Lopez", "3368421245"],
     ],
+    messagesContacts: [
+      {
+        chat: "moises",
+        msg: {
+          from: "Moises",
+          to: "luis",
+          time: "5 minutos ago",
+          msg: "Hello dude, how are you?",
+        },
+      },
+    ],
   },
   getters: {},
   mutations: {
@@ -27,6 +38,9 @@ export default createStore({
     },
     AddUserRegistered: function (state, userregistered) {
       state.register.push(userregistered);
+    },
+    SendMessage: function (state, msg) {
+      state.messagesContacts.push(msg);
     },
   },
   actions: {},

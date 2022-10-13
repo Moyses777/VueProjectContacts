@@ -18,11 +18,11 @@ button.btn.btn-primary.btnOffcanvas(type='button' data-bs-toggle='offcanvas' dat
             .fw-bold Tabla de contactos
             |       Registro de todos los contactos de la agenda!
         span.badge.bg-primary.rounded-pill 14
-      li.list-group-item.d-flex.justify-content-between.align-items-start
-        RouterLink.ms-2.me-auto.totalWidth(to="/login")
+      li.list-group-item.d-flex.justify-content-between.align-items-start(:class="{'activeLi': isChatView}")
+        RouterLink.ms-2.me-auto.totalWidth(to="/chat" :class="{'activeRedirector': isChatView}")
           .ms-2.me-auto
-            .fw-bold Subheading
-            |       Cras justo odio
+            .fw-bold Chat Contactos
+            |       Chat para poder comunicarte con tus contactos!
         span.badge.bg-primary.rounded-pill 14
 
 </template>
@@ -36,6 +36,7 @@ export default defineComponent({
     return {
       isDashboard: window.location.pathname == "/dashboard",
       isRegisterContact: window.location.pathname == "/registercontact",
+      isChatView: window.location.pathname == "/chat",
     };
   },
   components: {

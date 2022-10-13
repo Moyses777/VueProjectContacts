@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     user: { Email: "" },
-    userregistered: [{ Email: "luismoises@gmail.com", Password: "123456" }],
+    register: [{ Email: "luismoises@gmail.com", Password: "12345678" }],
     contacts: [
       ["Moises", "Camacho", "3325154212"],
       ["Francisco", "Colomos", "3324751245"],
@@ -13,7 +13,7 @@ export default createStore({
   getters: {},
   mutations: {
     LoginSession: function (state, user: any) {
-      state.userregistered.forEach((element) => {
+      state.register.forEach((element) => {
         if (user.Email == element.Email && user.Password == element.Password) {
           state.user = { Email: user.Email };
         }
@@ -24,6 +24,9 @@ export default createStore({
     },
     CloseSession: function (state) {
       state.user = { Email: "" };
+    },
+    AddUserRegistered: function (state, userregistered) {
+      state.register.push(userregistered);
     },
   },
   actions: {},

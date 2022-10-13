@@ -94,7 +94,7 @@ export default defineComponent({
               Email: this.txtEmail,
               Password: this.txtPassword,
             });
-            await notification.ShowSessionLoadingMessage();
+            await notification.ShowSessionLoadingMessage("register");
             this.txtEmail = "";
             this.txtPassword = "";
             this.txtAddress = "";

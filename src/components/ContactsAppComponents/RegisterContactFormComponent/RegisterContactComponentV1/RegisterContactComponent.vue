@@ -95,7 +95,7 @@ export default defineComponent({
               this.txtLastname,
               this.txtTelephone,
             ]);
-            await notification.ShowSessionLoadingMessage();
+            await notification.ShowSessionLoadingMessage("register");
             this.txtName = "";
             this.txtLastname = "";
             this.txtTelephone = "";

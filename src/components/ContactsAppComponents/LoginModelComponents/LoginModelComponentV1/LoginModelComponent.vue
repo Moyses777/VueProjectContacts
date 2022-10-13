@@ -56,7 +56,7 @@ export default defineComponent({
               Email: this.txtEmail,
               Password: this.txtPassword,
             });
-            await notification.ShowSessionLoadingMessage();
+            await notification.ShowSessionLoadingMessage("login");
             if (store.state.user.Email != "") router.push("/dashboard");
           }
         }

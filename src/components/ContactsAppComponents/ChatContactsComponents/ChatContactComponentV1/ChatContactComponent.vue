@@ -3,77 +3,21 @@ section(style="background-color: #eee;")
   .container.py-5
     .row
       .col-md-6.col-lg-5.col-xl-4.mb-4.mb-md-0
-        h5.font-weight-bold.mb-3.text-center.text-lg-start Member
-        .card
+        h5.font-weight-bold.mb-3.text-center.text-lg-start Contactos
+        .card.addScroll
           .card-body
             ul.list-unstyled.mb-0
-              li.p-2.border-bottom(style="background-color: #eee;")
+              li.p-2.border-bottom(style="background-color: #eee;" v-for="contact in contacts")
                 a.d-flex.justify-content-between(href="#!")
                   .d-flex.flex-row
                     img.rounded-circle.d-flex.align-self-center.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp" alt="avatar" width="60")
                     .pt-1
-                      p.fw-bold.mb-0 John Doe
+                      p.fw-bold.mb-0 {{ contact[0] }} {{ contact[1] }}
                       p.small.text-muted Hello, Are you there?
                   .pt-1
                     p.small.text-muted.mb-1 Just now
                     span.badge.bg-danger.float-end 1
-              li.p-2.border-bottom
-                a.d-flex.justify-content-between(href="#!")
-                  .d-flex.flex-row
-                    img.rounded-circle.d-flex.align-self-center.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp" alt="avatar" width="60")
-                    .pt-1
-                      p.fw-bold.mb-0 Danny Smith
-                      p.small.text-muted Lorem ipsum dolor sit.
-                  .pt-1
-                    p.small.text-muted.mb-1 5 mins ago
-              li.p-2.border-bottom
-                a.d-flex.justify-content-between(href="#!")
-                  .d-flex.flex-row
-                    img.rounded-circle.d-flex.align-self-center.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="avatar" width="60")
-                    .pt-1
-                      p.fw-bold.mb-0 Alex Steward
-                      p.small.text-muted Lorem ipsum dolor sit.
-                  .pt-1
-                    p.small.text-muted.mb-1 Yesterday
-              li.p-2.border-bottom
-                a.d-flex.justify-content-between(href="#!")
-                  .d-flex.flex-row
-                    img.rounded-circle.d-flex.align-self-center.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp" alt="avatar" width="60")
-                    .pt-1
-                      p.fw-bold.mb-0 Ashley Olsen
-                      p.small.text-muted Lorem ipsum dolor sit.
-                  .pt-1
-                    p.small.text-muted.mb-1 Yesterday
-              li.p-2.border-bottom
-                a.d-flex.justify-content-between(href="#!")
-                  .d-flex.flex-row
-                    img.rounded-circle.d-flex.align-self-center.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp" alt="avatar" width="60")
-                    .pt-1
-                      p.fw-bold.mb-0 Kate Moss
-                      p.small.text-muted Lorem ipsum dolor sit.
-                  .pt-1
-                    p.small.text-muted.mb-1 Yesterday
-              li.p-2.border-bottom
-                a.d-flex.justify-content-between(href="#!")
-                  .d-flex.flex-row
-                    img.rounded-circle.d-flex.align-self-center.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar" width="60")
-                    .pt-1
-                      p.fw-bold.mb-0 Lara Croft
-                      p.small.text-muted Lorem ipsum dolor sit.
-                  .pt-1
-                    p.small.text-muted.mb-1 Yesterday
-              li.p-2
-                a.d-flex.justify-content-between(href="#!")
-                  .d-flex.flex-row
-                    img.rounded-circle.d-flex.align-self-center.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" width="60")
-                    .pt-1
-                      p.fw-bold.mb-0 Brad Pitt
-                      p.small.text-muted Lorem ipsum dolor sit.
-                  .pt-1
-                    p.small.text-muted.mb-1 5 mins ago
-                    span.text-muted.float-end
-                      i.fas.fa-check(aria-hidden="true")
-      .col-md-6.col-lg-7.col-xl-8
+      .col-md-6.col-lg-7.col-xl-8.addScroll
         ul.list-unstyled
           li.d-flex.justify-content-between.mb-4
             img.rounded-circle.d-flex.align-self-start.me-3.shadow-1-strong(src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" width="60")
@@ -113,24 +57,43 @@ section(style="background-color: #eee;")
                   | labore et dolore magna aliqua.
           li#chat1.bg-white.mb-3
             .form-outline
-              textarea#textAreaExample2.form-control(rows="4")
+              textarea#textAreaExample2.form-control(rows="4" :value="txtMessage" @focusout="isCheckedActive" @input="txtMessage = $event.target.value" :class="{'active': isActive}")
               label.form-label(for="textAreaExample2") Message
               .form-notch
                 .form-notch-leading(style="width: 9px;")
                 .form-notch-middle(style="width: 60px;")
                 .form-notch-trailing
-          button.btn.btn-info.btn-rounded.float-end(type="button") Send
+          button.btn.btn-info.btn-rounded.float-end(type="button") Enviar
 </template>
 
 //* ChatTemplate -> https://mdbootstrap.com/docs/standard/extended/chat/
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import store from "@/store/index";
 
-export default defineComponent({});
+export default defineComponent({
+  data: function () {
+    return {
+      txtMessage: "",
+      isActive: false,
+      contacts: store.state.contacts,
+    };
+  },
+  methods: {
+    isCheckedActive: function () {
+      this.isActive = this.txtMessage != "";
+    },
+  },
+});
 </script>
 
 <style>
+.addScroll {
+  overflow: scroll;
+  height: 100vh;
+}
+
 #chat1 .form-outline .form-control ~ .form-notch div {
   pointer-events: none;
   border: 1px solid;
